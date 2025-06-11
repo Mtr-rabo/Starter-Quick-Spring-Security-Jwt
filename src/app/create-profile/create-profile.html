@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <h2 *ngIf="!profileId">Créer un profile</h2>
+  <h2 *ngIf="profileId">Modifier un profile</h2>
+  <form (ngSubmit)="createProfile()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        [(ngModel)]="profile.name"
+        name="name"
+        required
+      />
+    </div>
+    <div
+      class="mb-3"
+      *ngIf="!(loadingService.loading$ | async) && roles.length > 0"
+    >
+      <fieldset class="border p-3 rounded">
+        <legend class="float-none w-auto p-2">Rôles</legend>
+        <div class="d-flex flex-wrap gap-3 align-items-center">
+          <div class="form-check" *ngFor="let role of roles">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              [id]="role.id"
+              name="role{{ role.id }}"
+              [(ngModel)]="role.checked"
+            />
+            <label
+              class="form-check-label badge bg-secondary ms-1"
+              [for]="role.id"
+            >
+              {{ role.name }}
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      <span *ngIf="!profileId">Créer</span>
+      <span *ngIf="profileId">Modifier</span>
+    </button>
+  </form>
+</div>
