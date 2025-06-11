@@ -1,16 +1,8 @@
-profile
-Qwen3-235B-A22B
-5:04 pm
-Voici un README.md complet basé sur les informations extraites de ton fichier texte, qui reflète parfaitement ton projet combinant Angular + Spring Boot + JWT .
-
 🔐 Spring Security JWT Fullstack Project
 Projet full-stack utilisant Spring Boot (backend) avec JWT et Spring Security , et Angular (frontend).
 
 📁 Structure du Projet
 
-1
-2
-3
 springSecurityJwt/
 ├── secSpringBootStatefull/ # Backend Spring Boot
 └── user-management/ # Frontend Angular
@@ -47,8 +39,6 @@ H2 (en mémoire), ou MySQL/PostgreSQL (configurable)
    Maven
    bash
 
-1
-2
 cd secSpringBootStatefull
 mvn spring-boot:run
 Le backend sera accessible sur : http://localhost:8080
@@ -59,41 +49,11 @@ Le backend sera accessible sur : http://localhost:8080
    Angular CLI
    bash
 
-1
-2
-3
 cd user-management
 npm install
 ng serve
 L’application Angular sera disponible sur : http://localhost:4200
 
-🌐 Configuration du Proxy (facultatif mais utile en dev)
-Créez un fichier proxy.conf.json dans le dossier Angular (user-management) :
-
-json
-
-1
-2
-3
-4
-5
-6
-7
-⌄
-⌄
-{
-"/api": {
-"target": "http://localhost:8080",
-"secure": false,
-"changeOrigin": true
-}
-}
-Puis lancez Angular avec :
-
-bash
-
-1
-ng serve --proxy-config proxy.conf.json
 📝 Routes Utiles
 Backend API
 /api/auth/login
@@ -146,44 +106,9 @@ id, name (ex: ROLE_USER, ROLE_ADMIN)
 🧪 Swagger UI (Documentation API)
 Accédez à l'interface Swagger à cette adresse après démarrage du backend :
 
-1
 http://localhost:8080/swagger-ui/index.html
-📁 Commandes Git Utilisées
-Voici un résumé des commandes utilisées pour structurer ce projet :
 
-bash
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-
-# Générer des composants Angular
+les composes
 
 ng g c admin
 ng g c create-profile
@@ -208,18 +133,6 @@ ng g guard guards/authorization
 # Générer un interceptor
 
 ng g interceptor intercepters/httpIntercepter
-
-# Initialiser Git et pousser vers GitHub
-
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/Mtr-rabo/springSecurityJwt.git
-git push -u origin main
-🧹 Nettoyage & Maintenance
-Build Maven
-bash
 
 cd secSpringBootStatefull
 mvn clean package
