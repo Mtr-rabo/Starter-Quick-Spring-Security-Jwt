@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-sm p-4" style="width: 22rem">
+    <h4 class="text-center mb-4">Login</h4>
+    <form [formGroup]="formlogin" (ngSubmit)="onSubmit()">
+      <!-- Username -->
+      <div class="mb-3">
+        <label for="exampleInputUsername" class="form-label">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputUsername"
+          aria-describedby="usernameHelp"
+          placeholder="Enter username"
+          formControlName="username"
+        />
+        <div id="usernameHelp" class="form-text">
+          We'll never share your username.
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white py-3">
+          <h4 class="card-title text-center mb-0">
+            {{ userId ? 'Modifier un utilisateur' : 'Créer un utilisateur' }}
+          </h4>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="createUser()" novalidate>
+            <!-- Username -->
+            <div class="mb-3">
+              <label for="username" class="form-label">Nom d'utilisateur</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text"
+                  ><i class="bi bi-person"></i
+                ></span>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  [(ngModel)]="user.username"
+                  name="username"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <div class="input-group">
+                <span class="input-group-text"
+                  ><i class="bi bi-envelope"></i
+                ></span>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  [(ngModel)]="user.email"
+                  name="email"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3" *ngIf="!userId">
+              <label for="password" class="form-label">Mot de passe</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  [(ngModel)]="user.password"
+                  name="password"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- Profile Selection -->
+            <div
+              class="mb-3"
+              *ngIf="!(loadingService.loading$ | async) && profiles.length > 0"
+            >
+              <label for="profile" class="form-label">Profil</label>
+              <select
+                class="form-select"
+                id="profile"
+                [(ngModel)]="user.profileId"
+                name="profile"
+                required
+              >
+                <option value="">Sélectionner un profil</option>
+                <option *ngFor="let profile of profiles" [value]="profile.id">
+                  {{ profile.name }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Loader pendant le chargement des profils -->
+            <div
+              class="mb-3 text-center"
+              *ngIf="loadingService.loading$ | async"
+            >
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Chargement...</span>
+              </div>
+            </div>
+
+            <!-- Boutons -->
+            <div class="d-flex justify-content-between mt-4">
+              <button type="submit" class="btn btn-success px-4">
+                <i class="bi bi-save me-1"></i>
+                <span *ngIf="!userId">Créer</span>
+                <span *ngIf="userId">Modifier</span>
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-outline-secondary px-4"
+                (click)="onCancel()"
+              >
+                <i class="bi bi-x-circle me-1"></i> Annuler
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
